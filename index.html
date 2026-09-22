@@ -31,14 +31,17 @@
     .prof-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
     .icon { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.9; }
 
-    .summary-card { border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px; border: 1px solid rgba(255,255,255,0.05); }
-    .summary-title { font-size: 15px; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.3px; }
-    .badge-container { display: flex; gap: 6px; flex-wrap: wrap; }
-    .badge { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); font-size: 12px; padding: 6px 10px; border-radius: 6px; color: #e0e0e0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    /* Estilos del Resumen Cronológico */
+    .day-summary-group { margin-bottom: 24px; }
+    .day-summary-title { font-size: 13px; font-weight: 800; color: #888; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; border-bottom: 1px solid #2d2d2d; padding-bottom: 6px; }
+    .summary-item { border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border: 1px solid rgba(255,255,255,0.05); }
+    .summary-subj { font-size: 14px; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.3px; }
+    .summary-time { font-size: 12px; font-weight: 700; color: #e0e0e0; background: rgba(0,0,0,0.25); padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
 
-    .btn-copy { width: 100%; padding: 14px; margin-top: 16px; background: #e0e0e0; color: #121212; border: none; border-radius: 8px; font-weight: 800; font-size: 14px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-copy { width: 100%; padding: 14px; margin-top: 8px; background: #e0e0e0; color: #121212; border: none; border-radius: 8px; font-weight: 800; font-size: 14px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .btn-copy:active { background: #bdbdbd; }
 
+    /* Identidad visual de ramos */
     .c-mkt { background: linear-gradient(145deg, #281d3d, #1e152e); border-left: 5px solid #a78bfa; }
     .c-gest { background: linear-gradient(145deg, #3d1c2c, #2b131f); border-left: 5px solid #f472b6; }
     .c-admin { background: linear-gradient(145deg, #3d1c1c, #2e1414); border-left: 5px solid #fb7185; }
@@ -238,45 +241,68 @@
   </div>
 
   <div id="resumen" class="day-content">
-    <div class="summary-card c-mkt">
-      <div class="summary-title">Marketing Digital</div>
-      <div class="badge-container">
-        <span class="badge">Lun 08:30 - 10:40</span>
-        <span class="badge">Vie 10:40 - 12:10</span>
+    
+    <div class="day-summary-group">
+      <div class="day-summary-title">Lunes</div>
+      <div class="summary-item c-mkt">
+        <span class="summary-subj">Marketing Digital</span>
+        <span class="summary-time">08:30 - 10:40</span>
+      </div>
+      <div class="summary-item c-gest">
+        <span class="summary-subj">Gestión de Proyectos</span>
+        <span class="summary-time">13:10 - 15:20</span>
       </div>
     </div>
-    <div class="summary-card c-gest">
-      <div class="summary-title">Gestión de Proyectos</div>
-      <div class="badge-container">
-        <span class="badge">Lun 13:10 - 15:20</span>
-        <span class="badge">Mié 08:30 - 09:50</span>
+
+    <div class="day-summary-group">
+      <div class="day-summary-title">Martes</div>
+      <div class="summary-item c-admin">
+        <span class="summary-subj">Admin. Gestión del TH</span>
+        <span class="summary-time">10:00 - 11:20</span>
+      </div>
+      <div class="summary-item c-tit">
+        <span class="summary-subj">Actividad de Titulación</span>
+        <span class="summary-time">18:30 - 22:30 (Online)</span>
       </div>
     </div>
-    <div class="summary-card c-admin">
-      <div class="summary-title">Admin. Gestión del TH</div>
-      <div class="badge-container">
-        <span class="badge">Mar 10:00 - 11:20</span>
-        <span class="badge">Vie 08:30 - 10:40</span>
+
+    <div class="day-summary-group">
+      <div class="day-summary-title">Miércoles</div>
+      <div class="summary-item c-gest">
+        <span class="summary-subj">Gestión de Proyectos</span>
+        <span class="summary-time">08:30 - 09:50</span>
+      </div>
+      <div class="summary-item c-innov">
+        <span class="summary-subj">Proy. Innov. Tecnológica</span>
+        <span class="summary-time">13:50 - 15:20</span>
+      </div>
+      <div class="summary-item c-ciber">
+        <span class="summary-subj">Dis. Audito. Cibersegur.</span>
+        <span class="summary-time">16:50 - 18:10</span>
       </div>
     </div>
-    <div class="summary-card c-tit">
-      <div class="summary-title">Actividad de Titulación</div>
-      <div class="badge-container">
-        <span class="badge">Mar 18:30 - 22:30 (Online)</span>
+
+    <div class="day-summary-group">
+      <div class="day-summary-title">Jueves</div>
+      <div class="summary-item c-ciber">
+        <span class="summary-subj">Dis. Audito. Cibersegur.</span>
+        <span class="summary-time">08:30 - 10:40</span>
       </div>
     </div>
-    <div class="summary-card c-innov">
-      <div class="summary-title">Proy. Innov. Tecnológica</div>
-      <div class="badge-container">
-        <span class="badge">Mié 13:50 - 15:20</span>
-        <span class="badge">Vie 15:20 - 17:30</span>
+
+    <div class="day-summary-group">
+      <div class="day-summary-title">Viernes</div>
+      <div class="summary-item c-admin">
+        <span class="summary-subj">Admin. Gestión del TH</span>
+        <span class="summary-time">08:30 - 10:40</span>
       </div>
-    </div>
-    <div class="summary-card c-ciber">
-      <div class="summary-title">Dis. Audito. Cibersegur.</div>
-      <div class="badge-container">
-        <span class="badge">Mié 16:50 - 18:10</span>
-        <span class="badge">Jue 08:30 - 10:40</span>
+      <div class="summary-item c-mkt">
+        <span class="summary-subj">Marketing Digital</span>
+        <span class="summary-time">10:40 - 12:10</span>
+      </div>
+      <div class="summary-item c-innov">
+        <span class="summary-subj">Proy. Innov. Tecnológica</span>
+        <span class="summary-time">15:20 - 17:30</span>
       </div>
     </div>
 
