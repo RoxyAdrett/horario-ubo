@@ -14,26 +14,30 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; }
     body { background: #121212; color: #e0e0e0; padding: 16px; }
     
-    .nav { margin-top: 32px; display: flex; gap: 8px; overflow-x: auto; padding-bottom: 16px; margin-bottom: 16px; border-bottom: 1px solid #2d2d2d; scrollbar-width: none; }
+    .nav { margin-top: 32px; display: flex; gap: 8px; overflow-x: auto; padding-bottom: 16px; margin-bottom: 8px; border-bottom: 1px solid #2d2d2d; scrollbar-width: none; }
     .nav::-webkit-scrollbar { display: none; }
-    .nav button { flex: 1; min-width: 60px; padding: 12px 4px; border: 1px solid #333; border-radius: 8px; background: #1e1e1e; color: #888; font-weight: 600; font-size: 13px; text-transform: uppercase; cursor: pointer; transition: all 0.2s ease; }
+    .nav button { flex: 1; min-width: 65px; padding: 12px 4px; border: 1px solid #333; border-radius: 8px; background: #1e1e1e; color: #888; font-weight: 600; font-size: 13px; text-transform: uppercase; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; }
     .nav button.active { background: #e0e0e0; color: #121212; border-color: #e0e0e0; box-shadow: 0 0 10px rgba(224,224,224,0.1); }
     
     .day-content { display: none; animation: fadeIn 0.2s ease; }
     .day-content.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     
-    .card { border-radius: 12px; padding: 18px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 10px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+    .day-label { display: none; font-size: 14px; font-weight: 800; color: #888; text-transform: uppercase; letter-spacing: 2px; margin: 24px 0 12px 4px; }
     
+    .card { border-radius: 12px; padding: 18px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 10px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
     .header-row { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
     .time { font-size: 15px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; }
-    
     .subject { font-size: 17px; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.2; }
-    
     .info-row { display: flex; align-items: center; gap: 8px; font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 500; }
     .prof-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-    
     .icon { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.9; }
+
+    .resumen-section { display: none; margin-top: 32px; border-top: 1px dashed #333; padding-top: 24px; }
+    .summary-card { border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px; border: 1px solid rgba(255,255,255,0.05); }
+    .summary-title { font-size: 15px; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.3px; }
+    .badge-container { display: flex; gap: 6px; flex-wrap: wrap; }
+    .badge { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); font-size: 11px; padding: 4px 10px; border-radius: 6px; color: #e0e0e0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
     .c-mkt { background: linear-gradient(145deg, #281d3d, #1e152e); border-left: 5px solid #a78bfa; }
     .c-gest { background: linear-gradient(145deg, #3d1c2c, #2b131f); border-left: 5px solid #f472b6; }
@@ -45,14 +49,16 @@
 </head>
 <body>
   <div class="nav" id="tabs">
-    <button onclick="setDay('lun')">Lunes</button>
-    <button onclick="setDay('mar')">Martes</button>
-    <button onclick="setDay('mie')">Miérc</button>
-    <button onclick="setDay('jue')">Jueves</button>
-    <button onclick="setDay('vie')">Viernes</button>
+    <button id="btn-lun" onclick="setDay('lun')">Lunes</button>
+    <button id="btn-mar" onclick="setDay('mar')">Martes</button>
+    <button id="btn-mie" onclick="setDay('mie')">Miérc</button>
+    <button id="btn-jue" onclick="setDay('jue')">Jueves</button>
+    <button id="btn-vie" onclick="setDay('vie')">Viernes</button>
+    <button id="btn-semana" onclick="setDay('semana')" style="background:#2d2d2d; color:#fff;">SEMANA</button>
   </div>
 
   <div id="lun" class="day-content">
+    <div class="day-label">Lunes</div>
     <div class="card c-mkt">
       <div class="header-row">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -86,6 +92,7 @@
   </div>
 
   <div id="mar" class="day-content">
+    <div class="day-label">Martes</div>
     <div class="card c-admin">
       <div class="header-row">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -119,6 +126,7 @@
   </div>
 
   <div id="mie" class="day-content">
+    <div class="day-label">Miércoles</div>
     <div class="card c-gest">
       <div class="header-row">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -167,6 +175,7 @@
   </div>
 
   <div id="jue" class="day-content">
+    <div class="day-label">Jueves</div>
     <div class="card c-ciber">
       <div class="header-row">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -185,6 +194,7 @@
   </div>
 
   <div id="vie" class="day-content">
+    <div class="day-label">Viernes</div>
     <div class="card c-admin">
       <div class="header-row">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -232,15 +242,59 @@
     </div>
   </div>
 
+  <div id="resumen-section" class="resumen-section">
+    <div class="day-label" style="display:block; margin-top:0; border:none;">Resumen de Asignaturas</div>
+    <div class="summary-card c-mkt">
+      <div class="summary-title">Marketing Digital</div>
+      <div class="badge-container"><span class="badge">Lunes</span><span class="badge">Viernes</span></div>
+    </div>
+    <div class="summary-card c-gest">
+      <div class="summary-title">Gestión de Proyectos</div>
+      <div class="badge-container"><span class="badge">Lunes</span><span class="badge">Miércoles</span></div>
+    </div>
+    <div class="summary-card c-admin">
+      <div class="summary-title">Admin. Gestión del TH</div>
+      <div class="badge-container"><span class="badge">Martes</span><span class="badge">Viernes</span></div>
+    </div>
+    <div class="summary-card c-tit">
+      <div class="summary-title">Actividad de Titulación</div>
+      <div class="badge-container"><span class="badge">Martes</span></div>
+    </div>
+    <div class="summary-card c-innov">
+      <div class="summary-title">Proy. Innov. Tecnológica</div>
+      <div class="badge-container"><span class="badge">Miércoles</span><span class="badge">Viernes</span></div>
+    </div>
+    <div class="summary-card c-ciber">
+      <div class="summary-title">Dis. Audito. Cibersegur.</div>
+      <div class="badge-container"><span class="badge">Miércoles</span><span class="badge">Jueves</span></div>
+    </div>
+  </div>
+
   <script>
     const days = ['lun', 'mar', 'mie', 'jue', 'vie'];
     function setDay(d) {
-      document.querySelectorAll('.day-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.day-content').forEach(el => {
+          el.style.display = 'none';
+          el.style.animation = 'fadeIn 0.2s ease';
+      });
+      document.querySelectorAll('.day-label').forEach(el => el.style.display = 'none');
       document.querySelectorAll('.nav button').forEach(el => el.classList.remove('active'));
-      document.getElementById(d).classList.add('active');
-      const idx = days.indexOf(d);
-      if (idx !== -1) document.querySelectorAll('.nav button')[idx].classList.add('active');
+      document.getElementById('resumen-section').style.display = 'none';
+
+      if (d === 'semana') {
+        document.querySelectorAll('.day-content').forEach(el => {
+            el.style.display = 'block';
+            el.style.animation = 'none'; 
+        });
+        document.querySelectorAll('.day-label').forEach(el => el.style.display = 'block');
+        document.getElementById('resumen-section').style.display = 'block';
+        document.getElementById('btn-semana').classList.add('active');
+      } else {
+        document.getElementById(d).style.display = 'block';
+        document.getElementById('btn-' + d).classList.add('active');
+      }
     }
+    
     const today = new Date().getDay(); 
     if (today >= 1 && today <= 5) setDay(days[today - 1]);
     else setDay('lun');
