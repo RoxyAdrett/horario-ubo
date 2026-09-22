@@ -26,7 +26,8 @@
     .day-label { display: none; font-size: 14px; font-weight: 800; color: #888; text-transform: uppercase; letter-spacing: 2px; margin: 24px 0 12px 4px; }
     
     .card { border-radius: 12px; padding: 18px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 10px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-    .header-row { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+    .header-row { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+    .header-left { display: flex; align-items: center; gap: 8px; }
     .time { font-size: 15px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; }
     .subject { font-size: 17px; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.2; }
     .info-row { display: flex; align-items: center; gap: 8px; font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 500; }
@@ -38,6 +39,9 @@
     .summary-title { font-size: 15px; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.3px; }
     .badge-container { display: flex; gap: 6px; flex-wrap: wrap; }
     .badge { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); font-size: 11px; padding: 4px 10px; border-radius: 6px; color: #e0e0e0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .btn-copy { display: none; width: 100%; padding: 14px; margin-bottom: 16px; background: #e0e0e0; color: #121212; border: none; border-radius: 8px; font-weight: 800; font-size: 14px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-copy:active { background: #bdbdbd; }
 
     .c-mkt { background: linear-gradient(145deg, #281d3d, #1e152e); border-left: 5px solid #a78bfa; }
     .c-gest { background: linear-gradient(145deg, #3d1c2c, #2b131f); border-left: 5px solid #f472b6; }
@@ -57,188 +61,116 @@
     <button id="btn-semana" onclick="setDay('semana')" style="background:#2d2d2d; color:#fff;">SEMANA</button>
   </div>
 
+  <button id="copy-btn" class="btn-copy" onclick="copiarTexto()" style="display:none;">
+    <svg class="icon" style="width:18px; height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+    Copiar Horario en Texto
+  </button>
+
   <div id="lun" class="day-content">
     <div class="day-label">Lunes</div>
-    <div class="card c-mkt">
+    <div class="card c-mkt" data-day="Lunes" data-time="08:30 - 10:40" data-subj="Marketing Digital">
       <div class="header-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div class="time">08:30 - 10:40</div>
+        <div class="header-left"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div class="time">08:30 - 10:40</div></div>
       </div>
       <div class="subject">Marketing Digital</div>
-      <div class="info-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>LAB. REDES 3 (EX B17)</span>
-      </div>
-      <div class="prof-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>Agustín Andrés Díaz Salazar</span>
-      </div>
+      <div class="info-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>LAB. REDES 3 (EX B17)</span></div>
+      <div class="prof-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Agustín Andrés Díaz Salazar</span></div>
     </div>
-    <div class="card c-gest">
+    <div class="card c-gest" data-day="Lunes" data-time="13:10 - 15:20" data-subj="Gestión de Proyectos">
       <div class="header-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div class="time">13:10 - 15:20</div>
+        <div class="header-left"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div class="time">13:10 - 15:20</div></div>
       </div>
       <div class="subject">Gestión de Proyectos</div>
-      <div class="info-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>LAB. REDES 3 (EX B17)</span>
-      </div>
-      <div class="prof-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>Felipe Alberto Murcia Mesa</span>
-      </div>
+      <div class="info-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>LAB. REDES 3 (EX B17)</span></div>
+      <div class="prof-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Felipe Alberto Murcia Mesa</span></div>
     </div>
   </div>
 
   <div id="mar" class="day-content">
     <div class="day-label">Martes</div>
-    <div class="card c-admin">
+    <div class="card c-admin" data-day="Martes" data-time="10:00 - 11:20" data-subj="Admin. Gestión del TH">
       <div class="header-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div class="time">10:00 - 11:20</div>
+        <div class="header-left"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div class="time">10:00 - 11:20</div></div>
       </div>
       <div class="subject">Admin. Gestión del TH</div>
-      <div class="info-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>R105</span>
-      </div>
-      <div class="prof-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>David Alejandro Núñez Villalobos</span>
-      </div>
+      <div class="info-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>R105</span></div>
+      <div class="prof-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>David Alejandro Núñez Villalobos</span></div>
     </div>
-    <div class="card c-tit">
+    <div class="card c-tit" data-day="Martes" data-time="18:30 - 22:30" data-subj="Act. Titulación">
       <div class="header-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div class="time">18:30 - 22:30</div>
+        <div class="header-left"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div class="time">18:30 - 22:30</div></div>
       </div>
       <div class="subject">Act. Titulación</div>
-      <div class="info-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>PENDIENTE ASIGNACIÓN</span>
-      </div>
-      <div class="prof-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>Luis Alejandro Ramírez Donoso</span>
-      </div>
+      <div class="info-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>PENDIENTE ASIGNACIÓN</span></div>
+      <div class="prof-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Luis Alejandro Ramírez Donoso</span></div>
     </div>
   </div>
 
   <div id="mie" class="day-content">
     <div class="day-label">Miércoles</div>
-    <div class="card c-gest">
+    <div class="card c-gest" data-day="Miércoles" data-time="08:30 - 09:50" data-subj="Gestión de Proyectos">
       <div class="header-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div class="time">08:30 - 09:50</div>
+        <div class="header-left"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div class="time">08:30 - 09:50</div></div>
       </div>
       <div class="subject">Gestión de Proyectos</div>
-      <div class="info-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>LAB. COMP. RD22</span>
-      </div>
-      <div class="prof-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>Felipe Alberto Murcia Mesa</span>
-      </div>
+      <div class="info-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>LAB. COMP. RD22</span></div>
+      <div class="prof-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Felipe Alberto Murcia Mesa</span></div>
     </div>
-    <div class="card c-innov">
+    <div class="card c-innov" data-day="Miércoles" data-time="13:50 - 15:20" data-subj="Proy. Innov. Tecnológica">
       <div class="header-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div class="time">13:50 - 15:20</div>
+        <div class="header-left"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div class="time">13:50 - 15:20</div></div>
       </div>
       <div class="subject">Proy. Innov. Tecnológica</div>
-      <div class="info-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>LAB. REAL. MIXTA (EX F-19)</span>
-      </div>
-      <div class="prof-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>John Henry Ríos Griego</span>
-      </div>
+      <div class="info-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>LAB. REAL. MIXTA (EX F-19)</span></div>
+      <div class="prof-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>John Henry Ríos Griego</span></div>
     </div>
-    <div class="card c-ciber">
+    <div class="card c-ciber" data-day="Miércoles" data-time="16:50 - 18:10" data-subj="Dis. Audito. Cibersegur.">
       <div class="header-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div class="time">16:50 - 18:10</div>
+        <div class="header-left"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div class="time">16:50 - 18:10</div></div>
       </div>
       <div class="subject">Dis. Audito. Cibersegur.</div>
-      <div class="info-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>LAB. REDES 3 (EX B17)</span>
-      </div>
-      <div class="prof-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>Juan Carlos Saba Samur</span>
-      </div>
+      <div class="info-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>LAB. REDES 3 (EX B17)</span></div>
+      <div class="prof-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Juan Carlos Saba Samur</span></div>
     </div>
   </div>
 
   <div id="jue" class="day-content">
     <div class="day-label">Jueves</div>
-    <div class="card c-ciber">
+    <div class="card c-ciber" data-day="Jueves" data-time="08:30 - 10:40" data-subj="Dis. Audito. Cibersegur.">
       <div class="header-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div class="time">08:30 - 10:40</div>
+        <div class="header-left"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div class="time">08:30 - 10:40</div></div>
       </div>
       <div class="subject">Dis. Audito. Cibersegur.</div>
-      <div class="info-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>LAB. COMP. RD22</span>
-      </div>
-      <div class="prof-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>Juan Carlos Saba Samur</span>
-      </div>
+      <div class="info-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>LAB. COMP. RD22</span></div>
+      <div class="prof-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Juan Carlos Saba Samur</span></div>
     </div>
   </div>
 
   <div id="vie" class="day-content">
     <div class="day-label">Viernes</div>
-    <div class="card c-admin">
+    <div class="card c-admin" data-day="Viernes" data-time="08:30 - 10:40" data-subj="Admin. Gestión del TH">
       <div class="header-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div class="time">08:30 - 10:40</div>
+        <div class="header-left"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div class="time">08:30 - 10:40</div></div>
       </div>
       <div class="subject">Admin. Gestión del TH</div>
-      <div class="info-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>R301</span>
-      </div>
-      <div class="prof-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>David Alejandro Núñez Villalobos</span>
-      </div>
+      <div class="info-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>R301</span></div>
+      <div class="prof-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>David Alejandro Núñez Villalobos</span></div>
     </div>
-    <div class="card c-mkt">
+    <div class="card c-mkt" data-day="Viernes" data-time="10:40 - 12:10" data-subj="Marketing Digital">
       <div class="header-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div class="time">10:40 - 12:10</div>
+        <div class="header-left"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div class="time">10:40 - 12:10</div></div>
       </div>
       <div class="subject">Marketing Digital</div>
-      <div class="info-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>LAB. REDES 3 (EX B17)</span>
-      </div>
-      <div class="prof-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>Agustín Andrés Díaz Salazar</span>
-      </div>
+      <div class="info-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>LAB. REDES 3 (EX B17)</span></div>
+      <div class="prof-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Agustín Andrés Díaz Salazar</span></div>
     </div>
-    <div class="card c-innov">
+    <div class="card c-innov" data-day="Viernes" data-time="15:20 - 17:30" data-subj="Proy. Innov. Tecnológica">
       <div class="header-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div class="time">15:20 - 17:30</div>
+        <div class="header-left"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div class="time">15:20 - 17:30</div></div>
       </div>
       <div class="subject">Proy. Innov. Tecnológica</div>
-      <div class="info-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>LAB. COMP1 (EX F-13)</span>
-      </div>
-      <div class="prof-row">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>John Henry Ríos Griego</span>
-      </div>
+      <div class="info-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>LAB. COMP1 (EX F-13)</span></div>
+      <div class="prof-row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>John Henry Ríos Griego</span></div>
     </div>
   </div>
 
@@ -280,6 +212,7 @@
       document.querySelectorAll('.day-label').forEach(el => el.style.display = 'none');
       document.querySelectorAll('.nav button').forEach(el => el.classList.remove('active'));
       document.getElementById('resumen-section').style.display = 'none';
+      document.getElementById('copy-btn').style.display = 'none';
 
       if (d === 'semana') {
         document.querySelectorAll('.day-content').forEach(el => {
@@ -289,15 +222,25 @@
         document.querySelectorAll('.day-label').forEach(el => el.style.display = 'block');
         document.getElementById('resumen-section').style.display = 'block';
         document.getElementById('btn-semana').classList.add('active');
+        document.getElementById('copy-btn').style.display = 'flex';
       } else {
         document.getElementById(d).style.display = 'block';
         document.getElementById('btn-' + d).classList.add('active');
       }
     }
     
-    const today = new Date().getDay(); 
-    if (today >= 1 && today <= 5) setDay(days[today - 1]);
-    else setDay('lun');
-  </script>
-</body>
-</html>
+    function copiarTexto() {
+      let texto = "";
+      let diaActual = "";
+      document.querySelectorAll('.card').forEach(card => {
+        let dia = card.getAttribute('data-day');
+        if (dia !== diaActual) {
+          texto += `\n*${dia}*\n`;
+          diaActual = dia;
+        }
+        texto += `- ${card.getAttribute('data-time')}: ${card.getAttribute('data-subj')}\n`;
+      });
+      navigator.clipboard.writeText(texto.trim()).then(() => {
+        const btn = document.getElementById('copy-btn');
+        const originHTML = btn.innerHTML;
+        btn.innerHTML = '
